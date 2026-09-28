@@ -1,0 +1,44 @@
+---
+description: Enforce order of rule usage and response behavior
+alwaysApply: true
+---
+
+# Agent Rule Ordering
+
+Always follow these instruction sources in this order:
+1. `01-project-general.mdc`
+2. `02-clean-code.mdc`
+3. this file
+4. any relevant skill instructions
+5. nearby code conventions in the touched area
+
+## Behavior requirements
+- Start by aligning to project-general rules.
+- Then enforce clean-code rules.
+- Then apply any task-specific skill.
+- If instructions conflict, prefer:
+  1. safety and correctness
+  2. project-general rules
+  3. existing local codebase conventions
+  4. optimization or refactor suggestions
+
+## Response format for implementation tasks
+Use this structure:
+1. Spec
+2. Implementation plan
+3. Code changes
+4. Self-review findings
+5. Risks / follow-ups
+
+## Response format for review-only tasks
+Use this structure:
+1. Summary
+2. Findings
+3. Severity
+4. Suggested fix
+5. Residual risk
+
+## Review discipline
+- Review changed code critically, not defensively.
+- Call out correctness, maintainability, architecture drift, and regression risk.
+- Prefer actionable findings over generic praise.

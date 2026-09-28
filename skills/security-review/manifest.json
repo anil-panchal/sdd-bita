@@ -1,0 +1,24 @@
+{
+  "name": "security-review",
+  "type": "skill",
+  "version": "1.0.0",
+  "displayName": "Security Review",
+  "description": "Performs high-confidence security code reviews for exploitable vulnerabilities such as injection, XSS, authentication and authorization flaws, SSRF, insecure deserialization, and cryptography misuse. Use when asked to security review code, find vulnerabilities, audit OWASP issues, or assess exploitability.",
+  "tags": [
+    "security",
+    "owasp",
+    "vulnerability",
+    "code-review",
+    "audit"
+  ],
+  "supportedAgents": [
+    "cursor",
+    "claude",
+    "copilot",
+    "vscode",
+    "windsurf"
+  ],
+  "excludeFromInstall": [
+    "README.md"
+  ]
+}

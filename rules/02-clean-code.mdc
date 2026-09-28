@@ -1,0 +1,96 @@
+---
+description: Clean code, performance, safety, and engineering standards
+alwaysApply: true
+---
+
+# Clean Code & Engineering Standards
+
+## General principles
+- Prefer clarity over cleverness — write code a teammate can understand quickly.
+- No quick fixes; prefer clean architecture and separation of concerns.
+- Make the smallest change that fully solves the problem.
+- Do not break existing functionality unless explicitly requested.
+- If requirements are ambiguous, state assumptions and proceed with the safest option.
+
+## Naming
+- Use intention-revealing names using domain terminology from the app.
+- Avoid vague names like `data`, `temp`, `item`, `util`, `helper`, `stuff`.
+- Functions should describe an action; booleans should read like predicates.
+- Preserve existing naming conventions unless they are actively harmful.
+
+## Functions and methods
+- Keep functions small and focused on one purpose.
+- Extract private helpers when a method does multiple conceptual steps.
+- Group related parameters into typed objects when the list grows long.
+- Avoid hidden side effects.
+
+## Readability
+- Reduce nesting; prefer guard clauses and early returns.
+- Remove dead code and commented-out code.
+- Replace magic strings/numbers with named constants when it improves clarity.
+- Add meaningful inline comments for non-trivial logic only — no narration.
+
+## Monorepo placement
+- Reusable logic belongs in `libs/`; app-specific orchestration stays in the app.
+- Never duplicate logic across `staff` and `concierge` — extract to shared libs.
+- Extend existing shared library APIs rather than creating parallel utilities.
+- Do not create shared abstractions prematurely.
+
+## Angular 13 architecture
+- Follow patterns already established in this repo — do not introduce newer Angular idioms.
+- Components: presentation and orchestration only; no data-fetching details.
+- Services / facades: business logic, API calls, and data transformation. Avoid "god services."
+- Templates must stay simple — prefer derived view models over repeated template expressions.
+- Keep inputs/outputs and component responsibilities explicit.
+
+## Angular performance
+- Use `OnPush` change detection strategy where appropriate.
+- Avoid unnecessary change detection triggers and redundant re-renders.
+- Optimize data flow between services and components.
+- Avoid large synchronous computations inside lifecycle hooks.
+
+## TypeScript & RxJS (RxJS 7)
+- Maintain strong typing; use `unknown` + narrowing instead of `any`.
+- Explicit types at public boundaries.
+- Keep observable chains short and composable — avoid deeply nested pipes.
+- Prefer RxJS operators (`switchMap`, `forkJoin`, etc.) over nested subscriptions.
+- Use project-established patterns for subscription cleanup; avoid raw manual subscriptions.
+- Do not introduce reactive patterns inconsistent with the existing codebase.
+
+## Code review & optimization
+When creating, enhancing, or refactoring code:
+- Identify and remove redundant transformations.
+- Prevent duplicate API calls.
+- Suggest performance improvements when applicable.
+
+## Refactoring
+- First explain the existing flow, then identify issues.
+- Propose improvements before applying them.
+- Provide updated code with comments explaining major changes.
+
+## Bug fixing
+- Identify root cause before patching — no surface-level fixes.
+- Add defensive checks where appropriate.
+- Ensure regression safety and suggest test coverage improvements.
+
+## Change safety
+- Preserve public contracts unless the task explicitly requires breaking them.
+- Minimize file churn — no renames/moves unless clearly beneficial.
+- No opportunistic refactors mixed into feature work unless they directly reduce risk.
+- In legacy areas, isolate changes; avoid broad rewrites.
+
+## Communication style
+- Provide structured responses; explain reasoning before showing code.
+- Highlight breaking changes explicitly.
+- Suggest alternative approaches if relevant.
+- Ensure consistent error handling patterns and proper loading states.
+
+## Self-review checklist
+Before finalizing, verify:
+- Is this the simplest maintainable approach?
+- Is naming clear and domain-appropriate?
+- Is any logic duplicated unnecessarily?
+- Is any part too coupled to app-specific details?
+
+## Task output
+After each task, summarize: what changed, why, review findings, and risks or follow-ups.

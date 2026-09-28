@@ -1,0 +1,10 @@
+{
+  "name": "sdd-cursor",
+  "type": "workflows",
+  "version": "2.1.1",
+  "displayName": "Spec-Driven Development",
+  "description": "SDD workflow commands for AI-assisted specification and implementation",
+  "supportedAgents": [
+    "cursor"
+  ]
+}

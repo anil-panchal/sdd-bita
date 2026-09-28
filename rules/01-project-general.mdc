@@ -1,0 +1,57 @@
+---
+description: Angular monorepo project-wide engineering rules
+alwaysApply: true
+---
+# Project & Architecture Rules
+
+Angular monorepo using shared libraries under `/apps` and `/libs`.
+
+## Scope and repo awareness
+- Applications:
+  - `staff`: staff-facing app
+  - `concierge`: concierge app
+- Shared code lives under `libs/` — avoid duplicating it.
+- Before making changes, identify:
+  - target app(s)
+  - affected shared libraries
+  - whether the change belongs in app code or shared library code
+
+## Mandatory working sequence
+For every non-trivial task, follow this order:
+1. Understand the request and relevant code paths.
+2. Produce a short implementation spec before editing code.
+3. Validate where the change belongs in the monorepo.
+4. Implement the smallest safe change first.
+5. Review the changed files for correctness, maintainability, and regressions.
+6. Summarize findings, tradeoffs, and any remaining risks.
+
+Do not skip the spec step unless the task is a tiny one-line fix.
+
+## Spec-first expectations
+Before implementation, write a short spec with:
+- problem statement
+- affected files/modules
+- assumptions
+- constraints
+- implementation steps
+- risks/regression points
+
+## API Integration
+- Verify API contracts against official documentation before modifying service calls.
+- Do not assume payload structure — match documentation strictly.
+- Keep API transformation logic inside services, not components.
+- Avoid coupling UI models directly to backend models.
+- Ensure backward compatibility unless explicitly told to remove legacy code.
+- Optimize API calls to avoid redundant network requests.
+- Reuse shared HTTP logic in `base.service.ts` where applicable.
+
+## API Migration
+- Identify old endpoint usage and compare old vs new payload structure.
+- Ensure the mapping layer is clear.
+- Remove deprecated endpoint usage only after validation.
+- Avoid spreading migration logic across multiple layers.
+
+## New Feature Development
+- Ensure scalability of design.
+- Avoid tight coupling; follow existing architectural patterns.
+- Design for extensibility.
